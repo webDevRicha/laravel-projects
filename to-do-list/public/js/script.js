@@ -1,47 +1,33 @@
-let ulTasks = $("#ulTasks");
-let btnAdd = $("#btnAdd");
-let btnReset = $("#btnReset");
-let btnSort = $("#btnSort");
-let btnCleanup = $("#btnCleanup");
-let inpNewTask = $("#inpNewTask");
-function addItem() {
-    let listItem = $("<li>", {
-        class: "list-group-item",
-        text: inpNewTask.val(),
+$(document).ready(function () {
+    console.log("Javascript call");
+    $(document).on("click", "#btn_add", function () {
+        console.log("Add button click");
+        var new_task = $(document).find("#new_task").val();
+        $.ajax({
+            url: "/add",
+            type: "POST",
+            dataType: "json",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            data: {
+                task: new_task,
+            },
+            success: function (response) {
+                console.log("Success");
+            },
+        });
     });
-    listItem.click(() => {
-        listItem.toggleClass("done");
+
+    $(document).on("click", "#btn_reset", function () {
+        console.log("Reset button click");
     });
-    ulTasks.append(listItem);
-    inpNewTask.val("");
-    toggleInputButtons();
-}
 
-function clearDone() {
-    $("#ulTasks .done").remove();
-    toggleInputButtons();
-}
+    $(document).on("click", "#btn_sort", function () {
+        console.log("Sort button click");
+    });
 
-function sortTasks() {
-    $("#ulTasks .done").appendTo(ulTasks);
-}
-
-function toggleInputButtons() {
-    btnReset.prop("disabled", inpNewTask.val() == "");
-    btnAdd.prop("disabled", inpNewTask.val() == "");
-    btnSort.prop("disabled", ulTasks.children().length < 1);
-    btnCleanup.prop("disabled", ulTasks.children().length < 1);
-}
-
-inpNewTask.keypress((e) => {
-    if (e.which == 13) addItem();
+    $(document).on("click", "#btn_cleanup", function () {
+        console.log("Cleanup button click");
+    });
 });
-inpNewTask.on("input", toggleInputButtons);
-
-btnAdd.click(addItem);
-btnReset.click(() => {
-    inpNewTask.val("");
-    toggleInputButtons();
-});
-btnCleanup.click(clearDone);
-btnSort.click(sortTasks);
