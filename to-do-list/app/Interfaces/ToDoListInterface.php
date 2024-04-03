@@ -4,5 +4,9 @@ namespace App\Interfaces;
 
 interface ToDoListInterface
 {
-    // Define your interface methods here
+    public function all();
+    public function find($orderId);
+    public function delete($orderId);
+    public function create(array $orderDetails);
+    public function update($orderId, array $newDetails);
 }
