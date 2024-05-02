@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ToDoList extends Model
 {
     use HasFactory;
+    protected $table = 'to_do_list';
     protected $fillable = [
     	'task', 
     	'order',

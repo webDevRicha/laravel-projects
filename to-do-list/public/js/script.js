@@ -2,6 +2,7 @@ $(document).ready(function () {
     console.log("Javascript call");
     $(document).on("click", "#btn_add", function () {
         console.log("Add button click");
+        console.log($('meta[name="csrf-token"]').attr("content"));
         var new_task = $(document).find("#new_task").val();
         $.ajax({
             url: "/add",
@@ -11,7 +12,7 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             data: {
-                task: new_task,
+                new_task: new_task,
             },
             success: function (response) {
                 console.log("Success");

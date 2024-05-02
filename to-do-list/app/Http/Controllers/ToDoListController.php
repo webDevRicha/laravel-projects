@@ -20,16 +20,17 @@ class ToDoListController extends Controller
     }
 
     public function add(ToDoListRequest $toDoListRequest) {
-        dd($toDoListRequest);
-        $toDoListRequest->validated();
+        $validatedData = $toDoListRequest->validated();
         DB::beginTransaction();
         try {
             $insetArray = [
-                'task' => $toDoListRequest->title,
+                'task' => $toDoListRequest->new_task,
+                'order' => 0
             ]; 
             $this->toDoListRepository->create($insetArray);
             DB:: commit();
         }catch (Exception $e) { 
+            dd($e);
             DB::rollback();
         }
     }
