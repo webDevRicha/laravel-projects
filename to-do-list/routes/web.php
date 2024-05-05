@@ -15,3 +15,6 @@ use App\Http\Controllers\ToDoListController;
 
 Route::get('/', [ToDoListController::class, 'index']);
 Route::post('/add', [ToDoListController::class, 'add']);
+Route::post('/list', [ToDoListController::class, 'list']);
+Route::post('/update', [ToDoListController::class, 'update']);
+Route::post('/delete', [ToDoListController::class, 'delete']);

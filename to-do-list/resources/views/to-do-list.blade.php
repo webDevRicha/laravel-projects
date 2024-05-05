@@ -61,8 +61,16 @@
 
     <!-- Task List -->
 
-    <ul class="row list-group m-2" id="tasks_list">
-    </ul>
+    <table class="row list-group m-2" id="tasks_tbl">
+      <thead>
+        <tr>
+            <th>Task</th>
+            <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="tasks_list">
+      </tbody>
+    </table>
   </div>
 
 </body>

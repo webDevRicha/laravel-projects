@@ -9,7 +9,7 @@ class ToDoListRepository implements ToDoListInterface
 {
     public function all()
     {
-        return ToDoList::all();
+        return ToDoList::all()->sortBy("id");
     }
 
     public function find($taskId) 
