@@ -16,7 +16,7 @@ class ToDoListController extends Controller
         $this->toDoListRepository = $toDoListRepository;
     }
     public function index() {
-        return view('to-do-list');        
+        return view('pages/home');        
     }
 
     public function add(ToDoListRequest $toDoListRequest) {
